@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensionally</title>
+    <link href="src/output.css" rel="stylesheet">
+    <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-600 to-purple-600 text-white fixed top-0 left-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl text-black font-bold">Dimensionally</a>
+                <nav>
+                    <ul class="flex space-x-8 items-center">
+                        <form class="max-w-lg mx-auto flex-grow">
+                            <label for="default-search" class="sr-only">Search</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </div>
+                                <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
+                                    focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                                    dark:focus:border-blue-500" placeholder="Escribe algo" required />
+                                <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none 
+                                    focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 
+                                    dark:focus:ring-blue-800">Buscar</button>
+                            </div>
+                        </form>
+
+                        <li class="relative">
+                            <button type="button"
+                                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gradient-to-r from-gray-100 to-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                  </svg>                                  
+                            </button>
+
+                            <div class="origin-top absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    <a href="mi_cuenta.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem" tabindex="-1">Mi cuenta</a>
+                                    <a href="reportes.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem" tabindex="-1">Reportes</a>
+                                    <a href="configuracion.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem" tabindex="-1">Configuración</a>
+                                    <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem" tabindex="-1">Cerrar sesión</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1">
+        <!-- Sidebar -->
+        <aside class="bg-gray-800 text-white-400 w-58 h-full p-6 fixed top-0 left-0 z-50">
+            <a class="block text-2xl text-white font-bold mb-8">Búsqueda rápida</a>
+            <nav>
+                <ul class="space-y-4">
+                    <li>
+                        <button type="button" onclick="location.href='index.html'"
+                            class="text-white bg-gradient-to-r from-blue-500 via-green-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                            </svg>
+                            Inicio
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" onclick="location.href='reportes.html'"
+                            class="text-white bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 shadow-lg shadow-yellow-500/50 dark:shadow-lg dark:shadow-yellow-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+                            </svg>
+                            Reportes
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" onxlclick="location.href='usuarios.html'"
+                            class="text-white bg-gradient-to-r from-blue-500 via-green-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                            </svg>
+                            Usuarios
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" onxlclick="location.href='configuracion.html'"
+                            class="text-white bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 shadow-lg shadow-yellow-500/50 dark:shadow-lg dark:shadow-yellow-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                            Configuración
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-8 bg-gradient-to-r from-orange-200 to-purple-200 pl-64 pt-32">
+            <h1 class="text-3xl font-bold">Bienvenido a Dimensionally</h1>
+            <p class="mt-4">Explora nuestros servicios y conoce más sobre nosotros.</p>
+
+            <!-- Contenedor de tarjetas -->
+            <div class="flex justify-center gap-4 p-8 bg-gray-100 bg-gradient-to-r from-orange-200 to-purple-200">
+                <!-- Tarjeta 1 -->
+                <div
+                    class="max-w-sm bg-gradient-to-r from-gray-200 via-pink-200 to-gray-500 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="assets/img/calendario.png" alt="Imagen 1"
+                        class="h-[300px] w-[300px] rounded-t-lg object-cover mx-auto">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black">Más de 10 años</h3>
+                        <p class="text-black mt-2">Abrimos nuestras puertas desde 2013 y desde entonces
+                            hemos estado ofreciendo servicios de calidad.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div
+                    class="max-w-sm bg-gradient-to-r from-gray-200 via-pink-200 to-gray-500 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="assets/img/tierra.png" alt="Imagen 2"
+                        class="h-[300px] w-[300px] rounded-t-lg object-cover mx-auto">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black">Más de 40 países</h3>
+                        <p class="text-black mt-2">Esparciendo nuestros servicios y conocimientos por el mundo
+                            gracias a vosotros.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div
+                    class="max-w-sm bg-gradient-to-r from-gray-200 via-pink-200 to-gray-500 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="assets/img/cliente.png" alt="Imagen 3"
+                        class="h-[300px] w-[300px] rounded-t-lg object-cover mx-auto">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black">Más de 50.000 clientes</h3>
+                        <p class="text-black mt-2">Desde que empezamos hemos ofrecido ayuda a más de 50.000 personas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor de gráficos -->
+            <div class="flex gap-4 mt-8">
+                <!-- Gráfico de ingresos -->
+                <div class="w-1/2 bg-blue-100 p-6 rounded-lg shadow">
+                    <h2 class="text-xl font-bold mb-4">Ingresos Mensuales</h2>
+                    <canvas id="incomeChart" class="w-full h-64"></canvas>
+                </div>
+
+                <!-- Gráfico de usuarios activos -->
+                <div class="w-1/2 bg-green-100 p-6 rounded-lg shadow">
+                    <h2 class="text-xl font-bold mb-4">Usuarios Activos</h2>
+                    <canvas id="activeUsersChart" class="w-full h-64"></canvas>
+                </div>
+            </div>
+
+            <!-- Contenedor de gráficos 2-->
+            <div class="flex gap-4 mt-8">
+                <!-- Gráfico de sitios -->
+                <div class="w-full md:w-1/2 bg-red-100 p-6 rounded-lg shadow">
+                    <h2 class="text-xl font-bold mb-4">Uso en regiones</h2>
+                    <canvas id="usageChart" class="w-full h-64"></canvas>
+                </div>
+
+                <!-- Lista de reportes -->
+                <div class="w-full md:w-1/2 bg-yellow-100 p-6 rounded-lg shadow">
+                    <h2 class="text-xl font-bold mb-4">Reportes</h2>
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr class="bg-blue-300">
+                                <th scope="col" class="px-6 py-3">
+                                    Motivo
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Usuario
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Estado
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Fecha
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-green-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Fallo en la conexión
+                                </th>
+                                <td class="px-9 py-4">
+                                    Carla
+                                </td>
+                                <td class="px-9 py-3">
+                                    ✅
+                                </td>
+                                <td class="px-6 py-4">
+                                    1/1/25
+                                </td>
+                            </tr>
+                            <tr class="bg-red-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Correo electrónico
+                                </th>
+                                <td class="px-8 py-4">
+                                    Esteban
+                                </td>
+                                <td class="px-9 py-4">
+                                    ❌
+                                </td>
+                                <td class="px-6 py-4">
+                                    24/9/24
+                                </td>
+                            </tr>
+                            <tr class="bg-red-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Teclado inalámbrico
+                                </th>
+                                <td class="px-10 py-4">
+                                    Juan
+                                </td>
+                                <td class="px-9 py-4">
+                                    ❌
+                                </td>
+                                <td class="px-6 py-4">
+                                    3/2/24
+                                </td>
+                            </tr>
+                            <tr class="bg-green-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Contacto de emergencia
+                                </th>
+                                <td class="px-9 py-4">
+                                    Marina
+                                </td>
+                                <td class="px-9 py-4">
+                                    ✅
+                                </td>
+                                <td class="px-6 py-4">
+                                    31/5/24
+                                </td>
+                            </tr>
+                            <tr class="bg-green-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Almacenamiento SSD
+                                </th>
+                                <td class="px-10 py-4">
+                                    Toni
+                                </td>
+                                <td class="px-9 py-4">
+                                    ✅
+                                </td>
+                                <td class="px-6 py-4">
+                                    26/7/24
+                                </td>
+                            </tr>
+                            <tr class="bg-red-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Ratón inalámbrico
+                                </th>
+                                <td class="px-9 py-4">
+                                    Jaime
+                                </td>
+                                <td class="px-9 py-4">
+                                    ❌
+                                </td>
+                                <td class="px-6 py-4">
+                                    8/11/24
+                                </td>
+                            </tr>
+                            <tr class="bg-green-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Instalación de software
+                                </th>
+                                <td class="px-9 py-4">
+                                    Pedro
+                                </td>
+                                <td class="px-9 py-4">
+                                    ✅
+                                </td>
+                                <td class="px-6 py-4">
+                                    1/2/24
+                                </td>
+                            </tr>
+                            <tr class="bg-red-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Actualización de Windows
+                                </th>
+                                <td class="px-8 py-4">
+                                    Ainhoa
+                                </td>
+                                <td class="px-9 py-4">
+                                    ❌
+                                </td>
+                                <td class="px-6 py-4">
+                                    13/6/23
+                                </td>
+                            </tr>
+                            <tr class="bg-red-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Error en la pantalla
+                                </th>
+                                <td class="px-9 py-4">
+                                    Julia
+                                </td>
+                                <td class="px-9 py-4">
+                                    ❌
+                                </td>
+                                <td class="px-6 py-4">
+                                    27/5/24
+                                </td>
+                            </tr>
+                            <tr class="bg-green-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Fallo en el sistema operativo
+                                </th>
+                                <td class="px-9 py-4">
+                                    Skye
+                                </td>
+                                <td class="px-9 py-4">
+                                    ✅
+                                </td>
+                                <td class="px-6 py-4">
+                                    2/12/23
+                                </td>
+                            </tr>
+                            <tr class="bg-green-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Facturación incorrecta
+                                </th>
+                                <td class="px-9 py-4">
+                                    Dario
+                                </td>
+                                <td class="px-9 py-4">
+                                    ✅
+                                </td>
+                                <td class="px-6 py-4">
+                                    30/4/23
+                                </td>
+                            </tr>
+                            <tr class="bg-green-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Problema con el teclado
+                                </th>
+                                <td class="px-10 py-4">
+                                    Pol
+                                </td>
+                                <td class="px-9 py-4">
+                                    ✅
+                                </td>
+                                <td class="px-6 py-4">
+                                    12/8/24
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-orange-600 to-purple-600 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Dimensionally. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Gráfico de ingresos y gastos (barras)
+        const incomeCtx = document.getElementById('incomeChart').getContext('2d');
+        const incomeChart = new Chart(incomeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+                    'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                datasets: [
+                    {
+                        label: 'Ingresos en USD',
+                        data: [1200, 1500, 2000, 1800, 2200, 2500, 3000, 2800, 3200, 2600, 3100, 2900],
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Ingresos en EUR',
+                        data: [1164, 1455, 1940, 1746, 2135, 2200, 2426, 2717, 3105, 2523, 3008, 2814],
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { enabled: true },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Gráfico de usuarios activos, nuevos, clientes y empresas (líneas)
+        const activeUsersCtx = document.getElementById('activeUsersChart').getContext('2d');
+        const activeUsersChart = new Chart(activeUsersCtx, {
+            type: 'line',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+                    'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                datasets: [
+                    {
+                        label: 'Usuarios Activos',
+                        data: [300, 500, 400, 600, 700, 800, 900, 750, 660, 800, 730, 1000],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'rgba(255, 99, 132, 1)'
+                    },
+                    {
+                        label: 'Usuarios Nuevos',
+                        data: [150, 200, 180, 250, 300, 350, 400, 300, 290, 350, 300, 400],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+                    },
+                    {
+                        label: 'Clientes',
+                        data: [50, 80, 100, 120, 150, 200, 250, 230, 210, 240, 220, 300],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'rgba(75, 192, 192, 1)'
+                    },
+                    {
+                        label: 'Empresas',
+                        data: [10, 20, 25, 30, 35, 40, 50, 45, 40, 50, 55, 60],
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'rgba(255, 206, 86, 1)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { enabled: true },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Gráfico de sitios
+        const usageCtx = document.getElementById('usageChart').getContext('2d');
+
+        usageCtx.canvas.width = 400;
+        usageCtx.canvas.height = 400;
+
+        const usageChart = new Chart(usageCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Europa', 'Asia', 'África', 'Oceanía', 'América del Norte', 'América del Sud'],
+                datasets: [{
+                    label: 'Uso de Plataforma (%)',
+                    data: [27, 16, 8, 11, 14, 24],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 159, 64, 0.5)',
+                        'rgba(153, 102, 255, 0.5)',
+                        'rgba(255, 206, 86, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        enabled: true,
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                let percentage = tooltipItem.raw;
+                                return tooltipItem.label + ': ' + percentage + '%';
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: 20
+                }
+            }
+        });
+
+        document.getElementById("menu-button").addEventListener("click", function () {
+            const menu = this.nextElementSibling;
+            menu.classList.toggle("hidden");
+        });
+
+    </script>
+</body>
+
+</html>
